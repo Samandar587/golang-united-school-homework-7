@@ -78,21 +78,20 @@ func TestSwap(t *testing.T) {
 
 func TestNew(t *testing.T) {
 	str1 := "1 2 3\n4 5 6\n7 8 9"
-	str2 := "e1 2 3\n4 5 6\n7 8 9"
 	m := Matrix{
 		rows: 3,
 		cols: 3,
 		data: []int{1, 2, 3, 4, 5, 6, 7, 8, 9},
 	}
 
-	if out, _ := New(str1); out.rows != m.rows || out.cols != m.cols {
-		t.Errorf("Failed: Expected rows, cols, data: %v, %v, %v Got rows: %v, cols: %v, data: %v", m.rows, m.cols, m.data, out.rows, out.cols, out.data)
-	}
-	_, err1 := New(str2)
-	if err1 != nil {
-		t.Errorf("Error while parsing.")
+	out, err := New(str1)
+	if err != nil {
+		t.Errorf("Error while parsing")
 	}
 
+	if out.rows != m.rows || out.cols != m.cols {
+		t.Errorf("Failed: Expected rows, cols, data: %v, %v, %v Got rows: %v, cols: %v, data: %v", m.rows, m.cols, m.data, out.rows, out.cols, out.data)
+	}
 }
 
 func TestRows(t *testing.T) {
